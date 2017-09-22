@@ -2,8 +2,11 @@
   "name": "floggit-service",
   "version": "1.0.0",
   "description": "digital whiteboard",
-  "main": "index.js",
+"main": "src/service/index.js",
   "scripts": {
+    "js-lint": "node ./node_modules/eslint/bin/eslint.js '**/*.js'",
+    "start": "NODE_ENV=production node .",
+    "start:dev": "nodemon .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
