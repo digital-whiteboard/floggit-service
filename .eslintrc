@@ -1,13 +1,4 @@
 {
-<<<<<<< HEAD
-  “extends”: “eslint-config-airbnb”,
-  “env”: {
-    “browser”: true,
-    “node”: true
-  },
-  “rules”: {
-    “react/jsx-filename-extension”: [1, { “extensions”: [“.js”, “.jsx”] }]
-=======
   "extends": "eslint-config-airbnb",
   "env": {
     "browser": true,
@@ -15,6 +6,5 @@
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
->>>>>>> 5ee3d967418a8113043ae286b608153df0a4db94
   }
 }
