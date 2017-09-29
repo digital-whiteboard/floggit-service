@@ -44,7 +44,7 @@ publicAPI.getAll = () => {
   });
   return notesArray;
 };
-
+/*
 // TODO Update put
 publicAPI.update = (id, value) => {
   const noteFromDb = notes[id];
@@ -60,4 +60,5 @@ publicAPI.update = (id, value) => {
   save();
   return notes;
 };
+*/
 module.exports = publicAPI;
