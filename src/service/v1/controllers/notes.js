@@ -28,9 +28,19 @@ const add = (req, res) => {
   res.status(201).json({ id });
 };
 
+const update = (req, res) => {
+  const id = req.params.id;
+  const note = notes.get(id);
+  const newNote = req.body.value;
+  notes.remove(note);
+  notes.update(id, newNote);
+  res.status(201).json({ id });
+};
+
 module.exports = {
   get,
   getAll,
   remove,
   add,
+  update,
 };
