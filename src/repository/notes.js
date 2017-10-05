@@ -45,7 +45,6 @@ publicAPI.getAll = () => {
   return notesArray;
 };
 /*
-// TODO Update put
 publicAPI.update = (id, value) => {
   const noteFromDb = notes[id];
   notes.forEach((note) => {
