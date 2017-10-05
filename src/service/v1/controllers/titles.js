@@ -1,5 +1,11 @@
 const titles = require('../../../repository/titles');
 
+const add = (req, res) => {
+  const title = req.body.value;
+  const id = titles.add(title);
+  res.status(201).json({ id });
+};
+
 const get = (req, res) => {
   const id = req.params.id;
   const title = titles.get(id);
@@ -12,28 +18,22 @@ const get = (req, res) => {
   }
 };
 
-const getAll = (req, res) => {
-  res.json(titles.getAll());
-};
-
 const remove = (req, res) => {
   const id = req.params.id;
   titles.remove(id);
   res.status(204).send();
 };
 
-const update = (req, res) => {
-  const id = req.params.id;
-  titles.remove(id);
-  const newTitle = req.body.value;
-  const newId = titles.add(newTitle);
-  titles.update(id, newTitle);
-  res.status(201).json({ newId });
+const getAll = (req, res) => {
+  res.json(titles.getAll());
 };
 
-const add = (req, res) => {
-  const title = req.body.value;
-  const id = titles.add(title);
+const update = (req, res) => {
+  const id = req.params.id;
+  const title = titles.get(id);
+  const newTitle = req.body.value;
+  titles.remove(title);
+  titles.update(id, newTitle);
   res.status(201).json({ id });
 };
 

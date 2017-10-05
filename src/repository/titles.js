@@ -42,14 +42,13 @@ publicAPI.getAll = () => {
   return titlesArray;
 };
 
-publicAPI.update = (id, newValue) => {
-  const titleForUpdate = titles[id];
-  titles.pop(titleForUpdate);
+publicAPI.update = (id, value) => {
+  delete titles[id].value;
   titles[id] = {
-    newValue,
+    value,
   };
   save();
-  return titles;
+  return value;
 };
 
 module.exports = publicAPI;
