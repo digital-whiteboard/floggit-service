@@ -1,6 +1,3 @@
-// NOTE we use localStorage in this example to simplify/mock a backend.
-// Also we use to illustrate how frontend code can be used on the backend.
-// In production you should use a proper data store i.e. mySql, redis, couchdb etc.
 const { LocalStorage } = require('node-localstorage');
 
 const localStorage = new LocalStorage('./scratch');
