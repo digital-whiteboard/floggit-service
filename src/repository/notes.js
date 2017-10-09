@@ -1,6 +1,3 @@
-// NOTE we use localStorage in this example to simplify/mock a backend.
-// Also we use to illustrate how frontend code can be used on the backend.
-// In production you should use a proper data store i.e. mySql, redis, couchdb etc.
 const { LocalStorage } = require('node-localstorage');
 
 const localStorage = new LocalStorage('./scratch');
@@ -44,20 +41,14 @@ publicAPI.getAll = () => {
   });
   return notesArray;
 };
-/*
+
 publicAPI.update = (id, value) => {
-  const noteFromDb = notes[id];
-  notes.forEach((note) => {
-    if (noteFromDb.id === note.id) {
-      notes.pop(noteFromDb.id);
-      notes.push({
-        id,
-        value,
-      });
-    }
-  });
+  delete notes[id].value;
+  notes[id] = {
+    value,
+  };
   save();
-  return notes;
+  return value;
 };
-*/
+
 module.exports = publicAPI;
