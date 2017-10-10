@@ -2,29 +2,27 @@ const { LocalStorage } = require('node-localstorage');
 
 const localStorage = new LocalStorage('./scratch');
 
-const notes = (localStorage.getItem('noteList')) ?
-  JSON.parse(localStorage.getItem('noteList')) : {};
+const notes = (localStorage.getItem('notes')) ?
+  JSON.parse(localStorage.getItem('notes')) : {};
 
 function generateId() {
   return (+(new Date())).toString(); // Use a GUID generator instead of this
 }
 
 function save() {
-  localStorage.setItem('noteList', JSON.stringify(notes));
+  localStorage.setItem('notes', JSON.stringify(notes));
 }
 
 const publicAPI = {};
 
-publicAPI.add = (value) => {
+publicAPI.add = (obj) => {
   const uniqueId = generateId();
-  notes[uniqueId] = {
-    value,
-  };
+  notes[uniqueId] = obj;
   save();
   return uniqueId;
 };
 
-publicAPI.get = id => notes[id];
+publicAPI.get = id => Object.assign({}, notes[id], { id });
 
 publicAPI.remove = (id) => {
   delete notes[id];
@@ -36,19 +34,17 @@ publicAPI.getAll = () => {
   Object.keys(notes).forEach((id) => {
     notesArray.push({
       id,
-      value: notes[id].value,
+      obj: notes[id].obj,
     });
   });
   return notesArray;
 };
 
-publicAPI.update = (id, value) => {
-  delete notes[id].value;
-  notes[id] = {
-    value,
-  };
+publicAPI.update = (id, obj) => {
+  delete notes[id].obj;
+  notes[id] = obj;
   save();
-  return value;
+  return obj;
 };
 
 module.exports = publicAPI;
