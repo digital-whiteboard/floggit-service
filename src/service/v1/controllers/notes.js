@@ -23,7 +23,7 @@ const remove = (req, res) => {
 };
 
 const add = (req, res) => {
-  const note = req.body.value;
+  const note = req.body;
   const id = notes.add(note);
   res.status(201).json({ id });
 };
@@ -31,7 +31,7 @@ const add = (req, res) => {
 const update = (req, res) => {
   const id = req.params.id;
   const note = notes.get(id);
-  const newNote = req.body.value;
+  const newNote = req.body;
   notes.remove(note);
   notes.update(id, newNote);
   res.status(201).json({ id });
