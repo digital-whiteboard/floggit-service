@@ -6,7 +6,7 @@ const notes = (localStorage.getItem('notes')) ?
   JSON.parse(localStorage.getItem('notes')) : {};
 
 function generateId() {
-  return (+(new Date())).toString(); // Use a GUID generator instead of this
+  return (+(new Date())).toString();
 }
 
 function save() {
@@ -15,14 +15,18 @@ function save() {
 
 const publicAPI = {};
 
-publicAPI.add = (obj) => {
+publicAPI.add = (title, noteList, color) => {
   const uniqueId = generateId();
-  notes[uniqueId] = obj;
+  notes[uniqueId] = {
+    title,
+    noteList,
+    color,
+  };
   save();
   return uniqueId;
 };
 
-publicAPI.get = id => Object.assign({}, notes[id], { id });
+publicAPI.get = id => notes[id];
 
 publicAPI.remove = (id) => {
   delete notes[id];
@@ -34,17 +38,21 @@ publicAPI.getAll = () => {
   Object.keys(notes).forEach((id) => {
     notesArray.push({
       id,
-      obj: notes[id].obj,
+      title: notes[id].title,
+      noteList: notes[id].noteList,
+      color: notes[id].color,
     });
   });
   return notesArray;
 };
 
-publicAPI.update = (id, obj) => {
-  delete notes[id].obj;
-  notes[id] = obj;
+publicAPI.update = (id, title, noteList, color) => {
+  notes[id] = {
+    title,
+    noteList,
+    color,
+  };
   save();
-  return obj;
 };
 
 module.exports = publicAPI;

@@ -23,17 +23,19 @@ const remove = (req, res) => {
 };
 
 const add = (req, res) => {
-  const note = req.body;
-  const id = notes.add(note);
+  const title = req.body.title;
+  const noteList = req.body.noteList;
+  const color = req.body.color;
+  const id = notes.add(title, noteList, color);
   res.status(201).json({ id });
 };
 
 const update = (req, res) => {
   const id = req.params.id;
-  const note = notes.get(id);
-  const newNote = req.body;
-  notes.remove(note);
-  notes.update(id, newNote);
+  const title = req.body.title;
+  const noteList = req.body.noteList;
+  const color = req.body.color;
+  notes.update(id, title, noteList, color);
   res.status(201).json({ id });
 };
 
